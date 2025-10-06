@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Bếp Ẩm Thực — Công thức, Review & Mẹo nấu ăn</title>
+  <meta name="description" content="Bếp Ẩm Thực: kho công thức, review quán ăn, mẹo bếp và ảnh món ngon. Tìm công thức theo nguyên liệu, bộ sưu tập món chay, nhanh gọn, ăn chơi..." />
+  <link rel="canonical" href="https://yourdomain.com/" />
+
+  <!-- Open Graph (chỉnh theo site thật khi triển khai) -->
+  <meta property="og:title" content="Bếp Ẩm Thực — Công thức & Review" />
+  <meta property="og:description" content="Kho công thức, review quán và mẹo bếp dành cho những người yêu ẩm thực." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://yourdomain.com/" />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1512058564366-c9e3c9f6b8ad?w=1200" />
+
+  <!-- Thêm Google Fonts nếu cần -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#fff;
+      --muted:#6b7280;
+      --accent:#e76f51;
+      --accent-dark:#e04f2f;
+      --card:#ffffff;
+      --glass: rgba(255,255,255,0.6);
+      --radius:14px;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,#fff 0%,#fffafa 100%);color:#111}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:1100px;margin:0 auto;padding:24px}
+
+    header{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,#f4a261,#e76f51);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700}
+    nav ul{display:flex;gap:12px;list-style:none;padding:0;margin:0}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr 380px;gap:24px;align-items:center;padding:32px 0}
+    .hero-card{background:linear-gradient(180deg,rgba(231,111,81,0.06),rgba(231,111,81,0.02));padding:28px;border-radius:18px}
+    .hero h1{margin:0 0 8px;font-size:32px}
+    .hero p{margin:0;color:var(--muted)}
+    .search {margin-top:16px;display:flex;gap:8px}
+    .search input{flex:1;padding:12px 14px;border-radius:10px;border:1px solid #eee}
+    .search button{padding:12px 16px;border-radius:10px;border:0;background:var(--accent);color:#fff}
+
+    /* Categories */
+    .categories{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}
+    .cat{padding:8px 12px;border-radius:999px;border:1px solid #eee;background:#fff;cursor:pointer}
+    .cat.active{background:var(--accent);color:#fff;border-color:transparent}
+
+    /* Grid */
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .card{background:var(--card);border-radius:14px;overflow:hidden;box-shadow:0 6px 18px rgba(17,17,17,0.06)}
+    .card .img{height:180px;background-size:cover;background-position:center}
+    .card .body{padding:12px}
+    .tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+    .tag{font-size:12px;padding:6px 8px;border-radius:8px;background:#fafafa;border:1px solid #eee}
+
+    /* Footer */
+    footer{margin-top:32px;padding:28px 0;color:var(--muted);font-size:14px}
+
+    /* Modal recipe */
+    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.4);padding:24px}
+    .modal.show{display:flex}
+    .modal-card{width:100%;max-width:920px;background:#fff;border-radius:12px;overflow:auto;max-height:90vh}
+    .modal-header{display:flex;align-items:center;justify-content:space-between;padding:16px;border-bottom:1px solid #f3f4f6}
+    .modal-body{padding:18px}
+
+    /* Responsive */
+    @media (max-width:1000px){
+      .hero{grid-template-columns:1fr}
+      .grid{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:640px){
+      .grid{grid-template-columns:1fr}
+      header{padding:12px 0}
+      .logo{width:40px;height:40px}
+      .hero h1{font-size:24px}
+    }
+
+    /* Tiny utility */
+    .muted{color:var(--muted)}
+    .btn{display:inline-block;padding:10px 14px;border-radius:10px;border:0;background:var(--accent);color:#fff}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">B</div>
+        <div>
+          <div style="font-weight:700">Bếp Ẩm Thực</div>
+          <div class="muted" style="font-size:13px">Công thức, review & mẹo nấu ăn</div>
+        </div>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#">Trang chủ</a></li>
+          <li><a href="#recipes">Công thức</a></li>
+          <li><a href="#reviews">Review</a></li>
+          <li><a href="#tips">Mẹo bếp</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="hero-card">
+        <h1>Tìm công thức & khám phá món ngon</h1>
+        <p>Từ món ăn gia đình đến các món đặc sản — công thức dễ theo, hình đẹp, bước làm rõ ràng.</p>
+
+        <div class="search">
+          <input id="searchInput" type="search" placeholder="Nhập tên món hoặc nguyên liệu (ví dụ: bún, gà, chay)" aria-label="Tìm kiếm công thức">
+          <button id="searchBtn">Tìm</button>
+        </div>
+
+        <div class="categories" id="categoryList">
+          <!-- categories populated by JS -->
+        </div>
+      </div>
+
+      <aside style="padding:20px;background:linear-gradient(180deg,#fffef6,#fff);border-radius:12px;align-self:start;">
+        <h3 style="margin-top:0">Bài viết nổi bật</h3>
+        <div class="muted">Mẹo chọn nguyên liệu tươi ngon, hướng dẫn cơ bản cho người mới.</div>
+        <div style="margin-top:12px">
+          <a class="btn" href="#">Đăng ký nhận công thức</a>
+        </div>
+      </aside>
+    </section>
+
+    <section id="recipes">
+      <h2 style="margin-bottom:6px">Công thức mới nhất</h2>
+      <div class="muted" style="margin-bottom:12px">Click vào một công thức để xem chi tiết, nguyên liệu và hướng dẫn.</div>
+      <div id="recipeGrid" class="grid">
+        <!-- cards populated by JS -->
+      </div>
+    </section>
+
+    <footer>
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px">
+        <div>© <strong>Bếp Ẩm Thực</strong> — Thiết kế demo. Thay logo, tên và nội dung trước khi public.</div>
+        <div>
+          <small class="muted">Liên hệ: email@yourdomain.com</small>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Recipe modal -->
+  <div id="recipeModal" class="modal" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div>
+          <h3 id="modalTitle" style="margin:0">Tiêu đề món</h3>
+          <div id="modalMeta" class="muted" style="font-size:13px">Thời gian • Độ khó • Người đăng</div>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center">
+          <button id="copyLink" class="btn" style="background:#10b981">Sao chép link</button>
+          <button id="closeModal" class="btn" style="background:#ef4444">Đóng</button>
+        </div>
+      </div>
+      <div class="modal-body" id="modalBody">
+        <!-- content injected by JS -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* ---------- Sample data (thay thế bằng nội dung thật) ---------- */
+    const site = {
+      title: 'Bếp Ẩm Thực',
+      description: 'Công thức, review và mẹo bếp cho mọi nhà.'
+    };
+
+    const RECIPES = [
+      {
+        id: 'r1',
+        title: 'Gà rim mật ong & cơm trắng',
+        image: 'https://images.unsplash.com/photo-1604908177522-3d6f7b8b1b0b?w=1200',
+        time: '40 phút',
+        difficulty: 'Dễ',
+        tags: ['món chính','gà','cơm'],
+        servings: 4,
+        author: 'Bếp nhà',
+        rating: 4.7,
+        ingredients: [
+          '500g đùi gà', '2 thìa mật ong', '2 thìa nước tương', '1 củ hành tím', 'Tiêu, muối'
+        ],
+        steps: [
+          'Ướp gà với muối và tiêu 15 phút.',
+          'Phi hành, cho gà vào chiên săn.',
+          'Thêm mật ong, nước tương, rim lửa nhỏ đến khi sốt sệt.'
+        ],
+        excerpt: 'Gà rim mật ong thấm vị, ăn cùng cơm trắng rất hợp.'
+      },
+      {
+        id: 'r2',
+        title: 'Bún chả Hà Nội chuẩn vị',
+        image: 'https://images.unsplash.com/photo-1604908812824-1bd9d3f6b4a5?w=1200',
+        time: '1 giờ',
+        difficulty: 'Trung bình',
+        tags: ['món chính','bún','bbq'],
+        servings: 2,
+        author: 'Ngọc',
+        rating: 4.9,
+        ingredients: ['Thịt ba chỉ', 'Bún tươi', 'Nước mắm', 'Đường', 'Tỏi', 'Giấm'],
+        steps: ['Làm nước chấm chua ngọt', 'Nướng thịt tới chín', 'Dọn kèm bún và rau sống'],
+        excerpt: 'Bún chả tại nhà - cách làm và tips nướng thịt.'
+      },
+      {
+        id: 'r3',
+        title: 'Salad chay rau củ',
+        image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1200',
+        time: '15 phút',
+        difficulty: 'Rất dễ',
+        tags: ['chay','salad','ăn nhanh'],
+        servings: 2,
+        author: 'Mai',
+        rating: 4.5,
+        ingredients: ['Rau xà lách', 'Cà chua', 'Dưa leo', 'Dressing chanh dầu ô liu'],
+        steps: ['Rửa rau', 'Cắt gọn', 'Trộn với dressing'],
+        excerpt: 'Salad tươi mát, phù hợp bữa trưa nhẹ nhàng.'
+      }
+    ];
+
+    /* ---------- Render UI ---------- */
+    const recipeGrid = document.getElementById('recipeGrid');
+    const categoryList = document.getElementById('categoryList');
+
+    function collectCategories(items){
+      const s = new Set();
+      items.forEach(i=>i.tags.forEach(t=>s.add(t)));
+      return ['Tất cả',...Array.from(s)];
+    }
+
+    function renderCategories(){
+      const cats = collectCategories(RECIPES);
+      categoryList.innerHTML = '';
+      cats.forEach((c,idx)=>{
+        const b = document.createElement('button');
+        b.className = 'cat' + (idx===0? ' active':'');
+        b.textContent = c;
+        b.addEventListener('click',()=>{
+          document.querySelectorAll('.cat').forEach(x=>x.classList.remove('active'));
+          b.classList.add('active');
+          filterByCategory(c);
+        });
+        categoryList.appendChild(b);
+      });
+    }
+
+    function renderRecipes(items){
+      recipeGrid.innerHTML = '';
+      items.forEach(r=>{
+        const el = document.createElement('article');
+        el.className = 'card';
+        el.innerHTML = `
+          <div class="img" style="background-image:url('${r.image}')" role="img" aria-label="${r.title}"></div>
+          <div class="body">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <strong>${r.title}</strong>
+              <div class="muted" style="font-size:13px">⭐ ${r.rating}</div>
+            </div>
+            <div class="muted" style="font-size:13px;margin-top:6px">${r.excerpt}</div>
+            <div class="tags">${r.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+            <div style="margin-top:10px;display:flex;gap:8px;align-items:center">
+              <button class="btn" data-id="${r.id}">Xem chi tiết</button>
+              <small class="muted">${r.time} • ${r.difficulty}</small>
+            </div>
+          </div>
+        `;
+        recipeGrid.appendChild(el);
+      });
+
+      // attach listeners
+      document.querySelectorAll('.btn[data-id]').forEach(b=>{
+        b.addEventListener('click',(e)=>{
+          const id = e.currentTarget.getAttribute('data-id');
+          openRecipe(id);
+        })
+      });
+    }
+
+    function filterByCategory(cat){
+      if(cat==='Tất cả') return renderRecipes(RECIPES);
+      const f = RECIPES.filter(r=>r.tags.includes(cat));
+      renderRecipes(f);
+    }
+
+    function openRecipe(id){
+      const r = RECIPES.find(x=>x.id===id);
+      if(!r) return;
+      document.getElementById('modalTitle').textContent = r.title;
+      document.getElementById('modalMeta').textContent = `${r.time} • ${r.difficulty} • ${r.author}`;
+
+      // inject JSON-LD cho recipe (SEO structured data)
+      const jsonld = {
+        "@context":"https://schema.org/",
+        "@type":"Recipe",
+        "name":r.title,
+        "image":[r.image],
+        "author":{"@type":"Person","name":r.author},
+        "datePublished":"2025-10-05",
+        "description":r.excerpt,
+        "prepTime":"PT10M",
+        "cookTime":"PT30M",
+        "totalTime":"PT40M",
+        "recipeIngredient":r.ingredients,
+        "recipeInstructions":r.steps.map(s=>({"@type":"HowToStep","text":s})),
+        "recipeYield":`${r.servings} servings`,
+      };
+
+      const body = document.getElementById('modalBody');
+      body.innerHTML = `
+        <div style="display:grid;grid-template-columns:1fr 320px;gap:18px">
+          <div>
+            <img src="${r.image}" alt="${r.title}" style="width:100%;border-radius:10px;object-fit:cover" />
+            <h4>Nguyên liệu</h4>
+            <ul>${r.ingredients.map(i=>`<li>${i}</li>`).join('')}</ul>
+            <h4>Hướng dẫn</h4>
+            <ol>${r.steps.map(s=>`<li>${s}</li>`).join('')}</ol>
+            <div style="margin-top:12px">
+              <em class="muted">Gợi ý: thay đổi lượng gia vị theo khẩu vị. Thêm ảnh quá trình để tăng tính hấp dẫn.</em>
+            </div>
+          </div>
+          <aside style="background:#fafafa;padding:12px;border-radius:10px">
+            <div style="font-weight:700">Chi tiết</div>
+            <div class="muted" style="margin-top:6px">Khẩu phần: ${r.servings}</div>
+            <div class="muted">Độ khó: ${r.difficulty}</div>
+            <div style="margin-top:12px">
+              <a href="#" class="btn">Thêm vào sổ công thức</a>
+            </div>
+            <div style="margin-top:12px;font-size:13px" class="muted">Có thể chèn link affiliate tại đây (ví dụ: dụng cụ nấu ăn, gia vị đặc biệt)</div>
+          </aside>
+        </div>
+        <script type="application/ld+json">${JSON.stringify(jsonld)}</script>
+      `;
+
+      document.getElementById('recipeModal').classList.add('show');
+    }
+
+    // Close modal handlers
+    document.getElementById('closeModal').addEventListener('click',()=>{
+      document.getElementById('recipeModal').classList.remove('show');
+    });
+    document.getElementById('copyLink').addEventListener('click',()=>{
+      const title = document.getElementById('modalTitle').textContent;
+      const url = window.location.href + '#recipe-' + title.replace(/\s+/g,'-');
+      navigator.clipboard?.writeText(url).then(()=>alert('Đã sao chép link: ' + url));
+    });
+
+    // Search
+    document.getElementById('searchBtn').addEventListener('click',()=>{
+      const q = document.getElementById('searchInput').value.trim().toLowerCase();
+      if(!q) return renderRecipes(RECIPES);
+      const f = RECIPES.filter(r=>{
+        return r.title.toLowerCase().includes(q) || r.excerpt.toLowerCase().includes(q) || r.tags.join(' ').toLowerCase().includes(q);
+      });
+      renderRecipes(f);
+    });
+
+    // init
+    renderCategories();
+    renderRecipes(RECIPES);
+
+    // Quick notes: thay RECIPES bằng fetch('/api/recipes.json') khi bạn có backend
+  </script>
+
+  <!-- --- Thêm nơi đặt mã theo dõi Google Analytics (thay MEASUREMENT_ID) --- -->
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=MEASUREMENT_ID"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments)};
+    gtag('js', new Date());
+    gtag('config', 'MEASUREMENT_ID');
+  </script> -->
+
+</body>
+</html>
